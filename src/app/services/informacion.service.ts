@@ -5,15 +5,13 @@ import { Http } from '@angular/http';
 export class InformacionService {
 
   info: any = {};
-  equipo: any = {};
+  equipo: any[]  = [];
   cargada = false;
   cargada_sobre_nosotros = false;
 
   constructor( public http: Http ) {
       this.carga_info();
-
       this.carga_sobre_nosotros();
-
   }
 
   public carga_info() {
@@ -25,9 +23,9 @@ export class InformacionService {
   }
 
   public carga_sobre_nosotros() {
-    this.http.get('https://paginaweb-fd187.firebaseio.com/equipo')
+    this.http.get('https://paginaweb-fd187.firebaseio.com/equipo.json')
     .subscribe( data => {
-      this.cargada = true;
+      this.cargada_sobre_nosotros = true;
       this.equipo = data.json();
     });
   }
